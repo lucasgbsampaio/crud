@@ -14,11 +14,14 @@ export default {
     const { username, password } = req.body;
 
     try {
+      if (!username || !password)
+        throw new Error('Campos devem ser preenchidos');
+
       res.status(200).send({
-        token: generateToken({ id: user.id }),
+        token: generateToken({ user: username }),
       });
     } catch (error) {
-      res.status(400).send({ error: 'Erro ao entrar' });
+      res.status(400).send({ error: error.message });
     }
   },
 };
