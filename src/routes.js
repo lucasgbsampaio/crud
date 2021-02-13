@@ -9,8 +9,8 @@ const routes = express.Router();
 
 routes.post('/login', AuthController.login);
 
-/* routes.use(authMiddleware);
- */ routes.get('/product', ProductController.allProducts);
+routes.use(authMiddleware);
+routes.get('/product', ProductController.allProducts);
 routes.post('/product', ProductController.newProduct);
 routes.patch('/product/:id', ProductController.modifyProduct);
 routes.delete('/product/:id', ProductController.delProduct);
