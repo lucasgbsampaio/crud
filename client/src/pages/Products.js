@@ -1,17 +1,18 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 import ProductModal from '../components/ProductModal';
 
 export default function Products() {
-  const [showModal, setShowModal] = React.useState(false);
+  const [show, setShow] = React.useState(false);
 
   return (
     <main>
-      <button type="button" onClick={() => setShowModal(!showModal)}>
-        NOVO PRODUTO
-      </button>
+      <Button variant="primary" onClick={() => setShow(!show)}>
+        Lançamento
+      </Button>
 
-      <ProductModal showModal={showModal} setShowModal={setShowModal} />
+      <ProductModal show={show} setShow={setShow} />
     </main>
   );
 }

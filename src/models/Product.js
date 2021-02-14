@@ -13,12 +13,12 @@ const ProductSchema = new mongoose.Schema(
     },
 
     manufacture_date: {
-      type: String,
+      type: Date,
       required: true,
     },
 
     expiration_date: {
-      type: String,
+      type: Date,
     },
 
     price: {
