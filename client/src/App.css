@@ -9,3 +9,7 @@ a {
 .error {
   color: red;
 }
+
+.justify-center {
+  justify-content: center;
+}

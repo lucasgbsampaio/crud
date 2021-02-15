@@ -12,9 +12,11 @@ export default function ProductModal({ show, setShow }) {
   const [perishable, setPerishable] = React.useState(false);
   const [manufactureDate, setManufactureDate] = React.useState('');
   const [expirationDate, setExpirationDate] = React.useState('');
+  const [error, setError] = React.useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     const { url, options } = NEW_PRODUCT({
       name,
       price,
@@ -23,7 +25,11 @@ export default function ProductModal({ show, setShow }) {
       expirationDate,
     });
     const res = await fetch(url, options);
-    if (res.ok) {
+
+    if (!res.ok) {
+      const json = await res.json();
+      setError(json.error);
+    } else {
       setShow(!show);
     }
   }
@@ -71,10 +77,14 @@ export default function ProductModal({ show, setShow }) {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridExpirationDate">
-              <Form.Label>Data de validade</Form.Label>
+              <Form.Label>
+                Data de validade {perishable && <span>*</span>}
+              </Form.Label>
               <Form.Control
                 type="date"
                 value={expirationDate}
+                disabled={perishable ? 0 : 1}
+                required={perishable}
                 onChange={({ target }) => setExpirationDate(target.value)}
               />
             </Form.Group>
@@ -83,8 +93,8 @@ export default function ProductModal({ show, setShow }) {
           <Form.Group id="formGridCheckbox">
             <Form.Check
               type="checkbox"
-              value={perishable}
-              onChange={() => setPerishable(!perishable)}
+              checked={perishable}
+              onChange={({ target }) => setPerishable(target.checked)}
               label="Perecível"
             />
           </Form.Group>
@@ -94,6 +104,10 @@ export default function ProductModal({ show, setShow }) {
           </Button>
         </Form>
       </Modal.Body>
+
+      {error && (
+        <Modal.Footer className="error justify-center">{error}</Modal.Footer>
+      )}
     </Modal>
   );
 }

@@ -25,6 +25,17 @@ export default {
         throw new Error('Campos devem ser preenchidos');
       }
 
+      if (expirationDate && manufactureDate) {
+        const expiration = new Date(expirationDate);
+        const manufacture = new Date(manufactureDate);
+
+        if (manufacture.getTime() > expiration.getTime()) {
+          throw new Error(
+            'Data de fabricação não deve ser maior que data de validade'
+          );
+        }
+      }
+
       const product = await Product.create({
         name,
         price,
