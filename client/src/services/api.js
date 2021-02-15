@@ -13,55 +13,55 @@ export function USER_LOGIN(body) {
   };
 }
 
-export function ALL_PRODUCTS() {
-  return {
-    url: API_URL + '/product',
-    options: {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
-      },
-      cache: 'no-store',
+export async function ALL_PRODUCTS() {
+  const res = await fetch(API_URL + '/product', {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + window.localStorage.getItem('token'),
     },
-  };
+    cache: 'no-store',
+  });
+  const json = await res.json();
+
+  return json;
 }
 
-export function NEW_PRODUCT(body) {
-  return {
-    url: API_URL + '/product',
-    options: {
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
+export async function NEW_PRODUCT(body) {
+  const res = await fetch(API_URL + '/product', {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+      'Content-Type': 'application/json',
     },
-  };
+    body: JSON.stringify(body),
+  });
+  const json = await res.json();
+
+  return json;
 }
 
-export function UPDATE_PRODUCT(body, id) {
-  return {
-    url: API_URL + '/product' + id,
-    options: {
-      method: 'PATCH',
-      headers: {
-        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
+export async function UPDATE_PRODUCT(body, id) {
+  const res = await fetch(API_URL + '/product' + id, {
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+      'Content-Type': 'application/json',
     },
-  };
+    body: JSON.stringify(body),
+  });
+  const json = await res.json();
+
+  return json;
 }
 
-export function DELETE_PRODUCT(id) {
-  return {
-    url: API_URL + '/product' + id,
-    options: {
-      method: 'DELETE',
-      headers: {
-        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
-      },
+export async function DELETE_PRODUCT(id) {
+  const res = await fetch(API_URL + '/product' + id, {
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + window.localStorage.getItem('token'),
     },
-  };
+  });
+  const json = await res.json();
+
+  return json;
 }
