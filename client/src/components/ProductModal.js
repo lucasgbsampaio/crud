@@ -1,14 +1,21 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import { useDispatch } from 'react-redux';
 
-import { newProductRequested } from '../actions/products';
+import {
+  newProductRequested,
+  hideModal,
+  updateProductRequested,
+} from '../actions/products';
 
-export default function ProductModal({ show, setShow }) {
+export default function ProductModal() {
   const dispatch = useDispatch();
+  const showModal = useSelector((state) => state.products.showModal);
+
   const [name, setName] = React.useState('');
   const [price, setPrice] = React.useState('');
   const [perishable, setPerishable] = React.useState(false);
@@ -17,20 +24,40 @@ export default function ProductModal({ show, setShow }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    dispatch(
-      newProductRequested({
-        name,
-        price,
-        perishable,
-        manufactureDate,
-        expirationDate,
-      })
-    );
-    setShow(!show);
+
+    if (showModal.type === 'NEW') {
+      dispatch(
+        newProductRequested({
+          name,
+          price,
+          perishable,
+          manufactureDate,
+          expirationDate,
+        })
+      );
+    } else {
+      dispatch(
+        updateProductRequested(
+          {
+            name,
+            price,
+            perishable,
+            manufactureDate,
+            expirationDate,
+          },
+          showModal.productId
+        )
+      );
+    }
+    dispatch(hideModal());
   }
 
   return (
-    <Modal animation={false} show={show} onHide={() => setShow(!show)}>
+    <Modal
+      animation={false}
+      show={showModal.status}
+      onHide={() => dispatch(hideModal())}
+    >
       <Modal.Header closeButton>
         <Modal.Title>Registro de Produto</Modal.Title>
       </Modal.Header>

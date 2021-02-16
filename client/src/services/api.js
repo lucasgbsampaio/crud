@@ -41,7 +41,7 @@ export async function NEW_PRODUCT(body) {
 }
 
 export async function UPDATE_PRODUCT(body, id) {
-  const res = await fetch(API_URL + '/product' + id, {
+  const res = await fetch(API_URL + '/product/' + id, {
     method: 'PATCH',
     headers: {
       Authorization: 'Bearer ' + window.localStorage.getItem('token'),
@@ -55,7 +55,7 @@ export async function UPDATE_PRODUCT(body, id) {
 }
 
 export async function DELETE_PRODUCT(id) {
-  const res = await fetch(API_URL + '/product' + id, {
+  const res = await fetch(API_URL + '/product/' + id, {
     method: 'DELETE',
     headers: {
       Authorization: 'Bearer ' + window.localStorage.getItem('token'),

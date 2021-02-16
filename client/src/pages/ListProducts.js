@@ -2,15 +2,16 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getProductsRequested } from '../actions/products';
+import { getProductsRequested, showNewModal } from '../actions/products';
 
 import ProductModal from '../components/ProductModal';
+import ProductItem from '../components/ProductItem';
 
-function ListProducts() {
+export default function ListProducts() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   /*   const loading = useSelector((state) => state.products.loading);
-   */ const [show, setShow] = React.useState(false);
+   */
 
   React.useEffect(() => {
     dispatch(getProductsRequested());
@@ -20,13 +21,15 @@ function ListProducts() {
 
   return (
     <main>
-      <Button variant="primary" onClick={() => setShow(!show)}>
+      <Button variant="primary" onClick={() => dispatch(showNewModal())}>
         Lançamento
       </Button>
 
-      <ProductModal show={show} setShow={setShow} />
+      {products.map((product) => {
+        return <ProductItem key={product._id} product={product} />;
+      })}
+
+      <ProductModal />
     </main>
   );
 }
-
-export default ListProducts;
