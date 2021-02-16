@@ -4,34 +4,16 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 
-import { NEW_PRODUCT } from '../services/api';
-
 export default function ProductModal({ show, setShow }) {
   const [name, setName] = React.useState('');
   const [price, setPrice] = React.useState('');
   const [perishable, setPerishable] = React.useState(false);
   const [manufactureDate, setManufactureDate] = React.useState('');
   const [expirationDate, setExpirationDate] = React.useState('');
-  const [error, setError] = React.useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
-
-    const { url, options } = NEW_PRODUCT({
-      name,
-      price,
-      perishable,
-      manufactureDate,
-      expirationDate,
-    });
-    const res = await fetch(url, options);
-
-    if (!res.ok) {
-      const json = await res.json();
-      setError(json.error);
-    } else {
-      setShow(!show);
-    }
+    setShow(!show);
   }
 
   return (
@@ -105,9 +87,9 @@ export default function ProductModal({ show, setShow }) {
         </Form>
       </Modal.Body>
 
-      {error && (
+      {/* {error && (
         <Modal.Footer className="error justify-center">{error}</Modal.Footer>
-      )}
+      )} */}
     </Modal>
   );
 }
