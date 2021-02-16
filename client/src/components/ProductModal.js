@@ -3,8 +3,12 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import { useDispatch } from 'react-redux';
+
+import { newProductRequested } from '../actions/products';
 
 export default function ProductModal({ show, setShow }) {
+  const dispatch = useDispatch();
   const [name, setName] = React.useState('');
   const [price, setPrice] = React.useState('');
   const [perishable, setPerishable] = React.useState(false);
@@ -13,6 +17,15 @@ export default function ProductModal({ show, setShow }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    dispatch(
+      newProductRequested({
+        name,
+        price,
+        perishable,
+        manufactureDate,
+        expirationDate,
+      })
+    );
     setShow(!show);
   }
 

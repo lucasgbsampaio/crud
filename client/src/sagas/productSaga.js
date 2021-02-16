@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import {
   ALL_PRODUCTS,
   NEW_PRODUCT,
@@ -18,21 +18,26 @@ import {
 function* getProducts(action) {
   try {
     const products = yield call(ALL_PRODUCTS);
-    yield put(getProductsSucess(products));
+    yield put(getProductsSucess(products.products));
   } catch (error) {
-    yield put();
+    console.log(error);
   }
 }
 
-/* function* newProduct(action) {
+function* newProduct(action) {
   try {
-    const product = yield call(NEW_PRODUCT(action.product));
-    yield put(newProductSucess(product));
+    const response = yield call(NEW_PRODUCT, action.product);
+    if (response.product) {
+      yield put(newProductSucess(response.product));
+    } else {
+      throw response;
+    }
   } catch (error) {
-    yield put(newProductFailed(error));
+    yield put(newProductFailed(error.error));
   }
 }
 
+/* 
 function* updateProduct(action) {
   try {
     const product = yield call(UPDATE_PRODUCT(action.product));
@@ -53,7 +58,8 @@ function* deleteProduct(action) {
 
 function* productSaga() {
   yield takeLatest('GET_PRODUCTS_REQUESTED', getProducts);
-  /* yield takeLatest('NEW_PRODUCT_REQUESTED', newProduct);
+  yield takeLatest('NEW_PRODUCT_REQUESTED', newProduct);
+  /*
   yield takeLatest('UPDATE_PRODUCT_REQUESTED', updateProduct);
   yield takeLatest('DELETE_PRODUCT_REQUESTED', deleteProduct); */
 }

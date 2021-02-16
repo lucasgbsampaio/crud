@@ -3,7 +3,7 @@ import * as type from '../actions/types';
 const initialState = {
   products: [],
   loading: false,
-  error: null,
+  error: undefined,
 };
 
 export default function products(state = initialState, action) {
@@ -19,21 +19,24 @@ export default function products(state = initialState, action) {
         loading: false,
         products: action.products,
       };
-    /*
+
     case type.NEW_PRODUCT_REQUESTED:
       return {
         ...state,
+        loading: true,
       };
     case type.NEW_PRODUCT_SUCESS:
       return {
         ...state,
-        products: action.products,
+        loading: false,
+        products: [...state.products, action.product],
       };
     case type.NEW_PRODUCT_FAILED:
       return {
         ...state,
         error: action.error,
       };
+    /*
      case type.UPDATE_PRODUCT_REQUESTED:
       return {
         ...state,

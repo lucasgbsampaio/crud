@@ -12,25 +12,25 @@ export function getProductsSucess(products) {
   };
 }
 
-/* export function newProductRequested(products) {
+export function newProductRequested(product) {
   return {
     type: type.NEW_PRODUCT_REQUESTED,
-    products,
+    product,
   };
 }
-export function newProductSucess(products) {
+export function newProductSucess(product) {
   return {
     type: type.NEW_PRODUCT_SUCESS,
-    products,
+    product,
   };
 }
-export function newProductFailed(products) {
+export function newProductFailed(error) {
   return {
     type: type.NEW_PRODUCT_FAILED,
-    products,
+    error,
   };
 }
-
+/*
 export function updateProductRequested(products) {
   return {
     type: type.UPDATE_PRODUCT_REQUESTED,
