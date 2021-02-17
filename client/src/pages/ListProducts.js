@@ -7,6 +7,8 @@ import { getProductsRequested, showNewModal } from '../actions/products';
 import ProductModal from '../components/ProductModal';
 import ProductItem from '../components/ProductItem';
 
+import style from './styles/ListProducts.module.css';
+
 export default function ListProducts() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
@@ -17,10 +19,8 @@ export default function ListProducts() {
     dispatch(getProductsRequested());
   }, [dispatch]);
 
-  console.log(products);
-
   return (
-    <main>
+    <main className={style.container}>
       <Button variant="primary" onClick={() => dispatch(showNewModal())}>
         Lançamento
       </Button>
