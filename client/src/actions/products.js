@@ -1,14 +1,17 @@
 import * as type from './types';
 
-export function getProductsRequested() {
+export function getProductsRequested(page, sort) {
   return {
     type: type.GET_PRODUCTS_REQUESTED,
+    page,
+    sort,
   };
 }
-export function getProductsSucess(products) {
+export function getProductsSucess(products, pages) {
   return {
     type: type.GET_PRODUCTS_SUCESS,
     products,
+    pages,
   };
 }
 

@@ -13,3 +13,57 @@ a {
 .justify-center {
   justify-content: center;
 }
+
+#react-paginate {
+  padding: 10px;
+  display: flex;
+  flex-basis: 100%;
+  justify-content: center;
+}
+#react-paginate ul {
+  padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 3;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+
+#react-paginate li:first-child a {
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+#react-paginate li:last-child a {
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
+#react-paginate li a {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  position: relative;
+  margin-left: -1px;
+  border: 1px solid #dee2e6;
+  color: #17a2b8;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+#react-paginate li a:hover {
+  background: #eee;
+}
+
+#react-paginate .active a {
+  cursor: auto;
+  z-index: 1;
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+#react-paginate .active a:hover {
+  background: #17a2b8;
+}

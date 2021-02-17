@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   error: undefined,
   showModal: { status: false, type: '', productId: '' },
+  pages: 0,
 };
 
 export default function products(state = initialState, action) {
@@ -19,6 +20,7 @@ export default function products(state = initialState, action) {
         ...state,
         loading: false,
         products: action.products,
+        pages: action.pages,
       };
 
     case type.NEW_PRODUCT_REQUESTED:
@@ -26,10 +28,17 @@ export default function products(state = initialState, action) {
         ...state,
       };
     case type.NEW_PRODUCT_SUCESS:
-      return {
-        ...state,
-        products: [...state.products, action.product],
-      };
+      if (state.products.length < 10)
+        return {
+          ...state,
+          products: [...state.products, action.product],
+        };
+      else {
+        return {
+          ...state,
+        };
+      }
+
     case type.NEW_PRODUCT_FAILED:
       return {
         ...state,

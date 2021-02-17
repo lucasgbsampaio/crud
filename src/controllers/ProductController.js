@@ -2,10 +2,21 @@ import { Product } from '../models/Product.js';
 
 export default {
   async allProducts(req, res) {
-    try {
-      const products = await Product.find();
+    const { page = 1, limit = 10, sort = '' } = req.query;
 
-      res.status(200).send({ products });
+    try {
+      const products = await Product.find()
+        .limit(limit * 1)
+        .skip((page - 1) * limit)
+        .sort(sort)
+        .exec();
+
+      const count = await Product.countDocuments();
+
+      res.status(200).send({
+        products,
+        totalPages: Math.ceil(count / limit),
+      });
     } catch (error) {
       res.status(400).send({ error: error.message });
     }

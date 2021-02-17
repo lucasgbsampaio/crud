@@ -13,8 +13,8 @@ export function USER_LOGIN(body) {
   };
 }
 
-export async function ALL_PRODUCTS() {
-  const res = await fetch(API_URL + '/product', {
+export async function ALL_PRODUCTS(page, sort) {
+  const res = await fetch(`${API_URL}/product?page=${page}&sort=${sort}`, {
     method: 'GET',
     headers: {
       Authorization: 'Bearer ' + window.localStorage.getItem('token'),

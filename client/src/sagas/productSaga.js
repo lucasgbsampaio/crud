@@ -18,9 +18,9 @@ import {
 
 function* getProducts(action) {
   try {
-    const products = yield call(ALL_PRODUCTS);
+    const products = yield call(ALL_PRODUCTS, action.page, action.sort);
 
-    yield put(getProductsSucess(products.products));
+    yield put(getProductsSucess(products.products, products.totalPages));
   } catch (error) {
     console.log(error);
   }

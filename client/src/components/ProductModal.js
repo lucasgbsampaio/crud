@@ -138,7 +138,7 @@ export default function ProductModal() {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="info" type="submit">
             Enviar
           </Button>
         </Form>
