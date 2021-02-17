@@ -51,6 +51,7 @@ export default function ProductModal() {
     }
     dispatch(hideModal());
 
+    // Resetar valores dos campos após submit
     setName('');
     setPrice('');
     setPerishable(false);
@@ -58,6 +59,7 @@ export default function ProductModal() {
     setManufactureDate('');
   }
 
+  // Limpar valor de expirationDate se perishable for FALSE
   React.useEffect(() => {
     if (!perishable && expirationDate) {
       setExpirationDate('');
