@@ -80,7 +80,9 @@ export default function products(state = initialState, action) {
     case type.DELETE_PRODUCT_SUCESS:
       return {
         ...state,
-        products: action.product,
+        products: state.products.filter(
+          (product) => product._id !== action.productId
+        ),
       };
     default:
       return state;

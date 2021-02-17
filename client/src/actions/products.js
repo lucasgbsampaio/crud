@@ -31,23 +31,6 @@ export function newProductFailed(error) {
   };
 }
 
-export function showNewModal() {
-  return {
-    type: type.SHOW_NEW_MODAL,
-  };
-}
-export function showUpdateModal(productId) {
-  return {
-    type: type.SHOW_UPDATE_MODAL,
-    productId,
-  };
-}
-export function hideModal() {
-  return {
-    type: type.HIDE_MODAL,
-  };
-}
-
 export function updateProductRequested(product, productId) {
   return {
     type: type.UPDATE_PRODUCT_REQUESTED,
@@ -68,15 +51,32 @@ export function updateProductFailed(error) {
   };
 }
 
-export function deleteProductRequested(product) {
+export function deleteProductRequested(productId) {
   return {
     type: type.DELETE_PRODUCT_REQUESTED,
-    product,
+    productId,
   };
 }
-export function deleteProductSucess(product) {
+export function deleteProductSucess(productId) {
   return {
     type: type.DELETE_PRODUCT_SUCESS,
-    product,
+    productId,
+  };
+}
+
+export function showNewModal() {
+  return {
+    type: type.SHOW_NEW_MODAL,
+  };
+}
+export function showUpdateModal(productId) {
+  return {
+    type: type.SHOW_UPDATE_MODAL,
+    productId,
+  };
+}
+export function hideModal() {
+  return {
+    type: type.HIDE_MODAL,
   };
 }

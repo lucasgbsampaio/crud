@@ -60,11 +60,11 @@ function* updateProduct(action) {
 
 function* deleteProduct(action) {
   try {
-    const product = yield call(DELETE_PRODUCT);
+    yield call(DELETE_PRODUCT, action.productId);
 
-    yield put(deleteProductSucess());
+    yield put(deleteProductSucess(action.productId));
   } catch (error) {
-    yield put();
+    console.log(error);
   }
 }
 
