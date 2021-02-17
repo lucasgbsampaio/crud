@@ -50,7 +50,19 @@ export default function ProductModal() {
       );
     }
     dispatch(hideModal());
+
+    setName('');
+    setPrice('');
+    setPerishable(false);
+    setExpirationDate('');
+    setManufactureDate('');
   }
+
+  React.useEffect(() => {
+    if (!perishable && expirationDate) {
+      setExpirationDate('');
+    }
+  }, [expirationDate, perishable]);
 
   return (
     <Modal
@@ -99,16 +111,19 @@ export default function ProductModal() {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridExpirationDate">
-              <Form.Label>
-                Data de validade {perishable && <span>*</span>}
-              </Form.Label>
-              <Form.Control
-                type="date"
-                value={expirationDate}
-                disabled={perishable ? 0 : 1}
-                required={perishable}
-                onChange={({ target }) => setExpirationDate(target.value)}
-              />
+              {perishable && (
+                <>
+                  <Form.Label>
+                    Data de validade <span>*</span>
+                  </Form.Label>
+                  <Form.Control
+                    type="date"
+                    value={expirationDate}
+                    required
+                    onChange={({ target }) => setExpirationDate(target.value)}
+                  />
+                </>
+              )}
             </Form.Group>
           </Form.Row>
 
