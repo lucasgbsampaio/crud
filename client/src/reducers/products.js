@@ -24,12 +24,10 @@ export default function products(state = initialState, action) {
     case type.NEW_PRODUCT_REQUESTED:
       return {
         ...state,
-        loading: true,
       };
     case type.NEW_PRODUCT_SUCESS:
       return {
         ...state,
-        loading: false,
         products: [...state.products, action.product],
       };
     case type.NEW_PRODUCT_FAILED:
@@ -37,21 +35,7 @@ export default function products(state = initialState, action) {
         ...state,
         error: action.error,
       };
-    case type.SHOW_NEW_MODAL:
-      return {
-        ...state,
-        showModal: { status: true, type: 'NEW', productId: '' },
-      };
-    case type.SHOW_UPDATE_MODAL:
-      return {
-        ...state,
-        showModal: { status: true, type: 'EDIT', productId: action.productId },
-      };
-    case type.HIDE_MODAL:
-      return {
-        ...state,
-        showModal: { status: false, type: '', productId: '' },
-      };
+
     case type.UPDATE_PRODUCT_REQUESTED:
       return {
         ...state,
@@ -73,6 +57,7 @@ export default function products(state = initialState, action) {
         ...state,
         error: action.error,
       };
+
     case type.DELETE_PRODUCT_REQUESTED:
       return {
         ...state,
@@ -83,6 +68,22 @@ export default function products(state = initialState, action) {
         products: state.products.filter(
           (product) => product._id !== action.productId
         ),
+      };
+
+    case type.SHOW_NEW_MODAL:
+      return {
+        ...state,
+        showModal: { status: true, type: 'NEW', productId: '' },
+      };
+    case type.SHOW_UPDATE_MODAL:
+      return {
+        ...state,
+        showModal: { status: true, type: 'EDIT', productId: action.productId },
+      };
+    case type.HIDE_MODAL:
+      return {
+        ...state,
+        showModal: { status: false, type: '', productId: '' },
       };
     default:
       return state;
