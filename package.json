@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node --experimental-modules src/server.js",
-    "dev": "nodemon --experimental-modules src/server.js"
+    "dev": "nodemon --experimental-modules src/server.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "license": "MIT",
   "dependencies": {
