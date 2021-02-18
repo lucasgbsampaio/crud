@@ -6,14 +6,6 @@ a {
   font: 500 17px 'Lato', sans-serif;
 }
 
-.error {
-  color: red;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
 #react-paginate {
   padding: 10px;
   display: flex;
@@ -66,4 +58,25 @@ a {
 
 #react-paginate .active a:hover {
   background: #17a2b8;
+}
+
+@media screen and (max-width: 900px) {
+  body,
+  input,
+  button,
+  textarea,
+  a {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  #react-paginate li a {
+    padding: 0.5rem;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  #react-paginate {
+    padding: 0;
+  }
 }

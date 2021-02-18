@@ -19,3 +19,13 @@
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 540px) {
+  .options {
+    display: block;
+  }
+  .options button {
+    margin-bottom: 15px;
+    font-size: 15px;
+  }
+}
