@@ -143,10 +143,6 @@ export default function ProductModal() {
           </Button>
         </Form>
       </Modal.Body>
-
-      {/* {error && (
-        <Modal.Footer className="error justify-center">{error}</Modal.Footer>
-      )} */}
     </Modal>
   );
 }

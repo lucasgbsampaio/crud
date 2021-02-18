@@ -21,10 +21,15 @@ export default function ListProducts() {
   const products = useSelector((state) => state.products.products);
   const pages = useSelector((state) => state.products.pages);
   const loading = useSelector((state) => state.products.loading);
+  const error = useSelector((state) => state.products.error);
 
   React.useEffect(() => {
     dispatch(getProductsRequested(page, optionSort));
   }, [dispatch, page, optionSort]);
+
+  React.useEffect(() => {
+    if (error) alert(`Error: ${error}`);
+  }, [error]);
 
   return (
     <main className={style.container}>
@@ -93,21 +98,21 @@ export default function ListProducts() {
               })}
             </tbody>
           </Table>
-
-          <div id="react-paginate">
-            <ReactPaginate
-              pageCount={pages}
-              pageRangeDisplayed={2}
-              marginPagesDisplayed={1}
-              onPageChange={(data) => setPage(data.selected + 1)}
-              previousLabel={'Antes'}
-              nextLabel={'Próximo'}
-              breakLabel={'...'}
-              activeClassName={'active'}
-            />
-          </div>
         </>
       )}
+
+      <div id="react-paginate">
+        <ReactPaginate
+          pageCount={pages}
+          pageRangeDisplayed={2}
+          marginPagesDisplayed={1}
+          onPageChange={(data) => setPage(data.selected + 1)}
+          previousLabel={'Antes'}
+          nextLabel={'Próximo'}
+          breakLabel={'...'}
+          activeClassName={'active'}
+        />
+      </div>
 
       <ProductModal />
     </main>
