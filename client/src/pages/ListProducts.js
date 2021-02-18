@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 
@@ -19,8 +20,7 @@ export default function ListProducts() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const pages = useSelector((state) => state.products.pages);
-  /*   const loading = useSelector((state) => state.products.loading);
-   */
+  const loading = useSelector((state) => state.products.loading);
 
   React.useEffect(() => {
     dispatch(getProductsRequested(page, optionSort));
@@ -61,45 +61,53 @@ export default function ListProducts() {
         </Form.Group>
       </section>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nome</th>
-            <th>Preço (R$)</th>
-            <th>Perecível</th>
-            <th>Data de fabricação</th>
-            <th>Data de validade</th>
-            <th>Editar</th>
-            <th>Deletar</th>
-          </tr>
-        </thead>
+      {loading ? (
+        <div className={style.centerSpinner}>
+          <Spinner animation="grow" variant="info" />
+        </div>
+      ) : (
+        <>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Preço (R$)</th>
+                <th>Perecível</th>
+                <th>Data de fabricação</th>
+                <th>Data de validade</th>
+                <th>Editar</th>
+                <th>Deletar</th>
+              </tr>
+            </thead>
 
-        <tbody>
-          {products.map((product, index) => {
-            return (
-              <ProductItem
-                index={index + 1}
-                key={product._id}
-                product={product}
-              />
-            );
-          })}
-        </tbody>
-      </Table>
+            <tbody>
+              {products.map((product, index) => {
+                return (
+                  <ProductItem
+                    index={index + 1}
+                    key={product._id}
+                    product={product}
+                  />
+                );
+              })}
+            </tbody>
+          </Table>
 
-      <div id="react-paginate">
-        <ReactPaginate
-          pageCount={pages}
-          pageRangeDisplayed={2}
-          marginPagesDisplayed={1}
-          onPageChange={(data) => setPage(data.selected + 1)}
-          previousLabel={'Antes'}
-          nextLabel={'Próximo'}
-          breakLabel={'...'}
-          activeClassName={'active'}
-        />
-      </div>
+          <div id="react-paginate">
+            <ReactPaginate
+              pageCount={pages}
+              pageRangeDisplayed={2}
+              marginPagesDisplayed={1}
+              onPageChange={(data) => setPage(data.selected + 1)}
+              previousLabel={'Antes'}
+              nextLabel={'Próximo'}
+              breakLabel={'...'}
+              activeClassName={'active'}
+            />
+          </div>
+        </>
+      )}
 
       <ProductModal />
     </main>
