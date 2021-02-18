@@ -6,6 +6,7 @@ import store from './store';
 
 import Login from './pages/Login';
 import ListProducts from './pages/ListProducts';
+import NotFound from './pages/NotFound';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -18,6 +19,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/products" element={<ListProducts />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </Provider>
