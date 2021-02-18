@@ -94,12 +94,9 @@ export default function ListProducts() {
           pageRangeDisplayed={2}
           marginPagesDisplayed={1}
           onPageChange={(data) => setPage(data.selected + 1)}
-          containerClassName={'pagination'}
           previousLabel={'Antes'}
           nextLabel={'Próximo'}
           breakLabel={'...'}
-          breakClassName={'break-me'}
-          subContainerClassName={'pages pagination'}
           activeClassName={'active'}
         />
       </div>
