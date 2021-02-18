@@ -52,16 +52,16 @@ export default function ListProducts() {
           >
             <option value="name">Nome [A-Z]</option>
             <option value="-name">Nome [Z-A]</option>
-            <option value="price">Preço [1, -1]</option>
-            <option value="-price">Preço [-1, 1]</option>
-            <option value="perishable">Perecível [1, -1]</option>
-            <option value="-perishable">Percível [-1, 1]</option>
-            <option value="manufacture_date">Data de fabricação [1, -1]</option>
+            <option value="-price">Preço [1, -1]</option>
+            <option value="price">Preço [-1, 1]</option>
+            <option value="-perishable">Perecível [1, -1]</option>
+            <option value="perishable">Percível [-1, 1]</option>
             <option value="-manufacture_date">
-              Data de fabricação [-1, 1]
+              Data de fabricação [1, -1]
             </option>
-            <option value="expiration_date">Data de validade [1, -1]</option>
-            <option value="-expiration_date">Data de validade [-1, 1]</option>
+            <option value="manufacture_date">Data de fabricação [-1, 1]</option>
+            <option value="-expiration_date">Data de validade [1, -1]</option>
+            <option value="expiration_date">Data de validade [-1, 1]</option>
           </Form.Control>
         </Form.Group>
       </section>
