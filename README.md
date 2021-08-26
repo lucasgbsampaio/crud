@@ -75,7 +75,7 @@ será preciso ter uma conta no [MongoDB](https://www.mongodb.com/) para ter aces
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/lucasfe4nor/crud.git
+$ git clone https://github.com/lucasgbsampaio/crud.git
 
 # Acesse a pasta do projeto no terminal/cmd para ter acesso a raiz da pasta
 $ cd crud
@@ -124,7 +124,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[React Bootstrap](https://react-bootstrap.github.io/)**
 - **[React Paginate](https://www.npmjs.com/package/react-paginate)**
 
-> Veja o arquivo [package.json](https://github.com/lucasfe4nor/crud/blob/master/client/package.json)
+> Veja o arquivo [package.json](https://github.com/lucasgbsampaio/crud/blob/master/client/package.json)
 
 #### Server ([NodeJS](https://nodejs.org/en/))
 
@@ -135,13 +135,13 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[BodyParser](https://www.npmjs.com/package/body-parser)**
 - **[Mongoose](https://mongoosejs.com/)**
 
-> Veja o arquivo [package.json](https://github.com/lucasfe4nor/crud/blob/master/package.json)
+> Veja o arquivo [package.json](https://github.com/lucasgbsampaio/crud/blob/master/package.json)
 
 ---
 
 ## 👨‍💻 Autor
 
-- **Lucas Sampaio (lucasfe4nor)** - [Twitter](https://twitter.com/lucasfe4nor) - [LinkedIn](https://www.linkedin.com/in/lucasgbsampaio/)
+- **Lucas Sampaio (lucasgbsampaio)** - [Twitter](https://twitter.com/lucasgbsampaio) - [LinkedIn](https://www.linkedin.com/in/lucasgbsampaio/)
 
 ---
 
